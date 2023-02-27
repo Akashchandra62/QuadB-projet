@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>HoldInfo</title>
+  </head>
+  <body>
+    <nav>
+      <div>
+        <img src="./logo.png" alt="logo" width="250px" />
+      </div>
+      <div
+        class="nav-md-btn"
+        style="display: flex; flex-wrap: wrap; justify-content: center"
+      >
+        <button class="inr">
+          <div>INR &nbsp;<i class="fa-solid fa-caret-down"></i></div>
+          <div class="inr-dropdown" style="display: none">
+            <p>INR</p>
+          </div>
+        </button>
+        <button class="btc">
+          <div>BTC &nbsp;<i class="fa-solid fa-caret-down"></i></div>
+          <div class="btc-dropdown" style="display: none">
+            <p>BTC</p>
+            <p>ETH</p>
+            <p>USDT</p>
+            <p>XRP</p>
+            <p>TRX</p>
+            <p>DASH</p>
+            <p>ZEC</p>
+            <p>XEM</p>
+            <p>IOST</p>
+            <p>WIN</p>
+            <p>BTT</p>
+            <p>WRX</p>
+          </div>
+        </button>
+        <button>BUY BTC</button>
+      </div>
+      <div class="nav-rt-btn">
+        <div class="time"></div>
+        <button>
+          <i class="fa-sharp fa-solid fa-paper-plane"></i> &nbsp;Connect
+          Telegram
+        </button>
+      </div>
+    </nav>
+    <div class="tag">
+      <h2>Best Price to Trade</h2>
+    </div>
+    <div class="main">
+      <div class="main-top">
+        <div>
+          <h3>0.79%</h3>
+          <p>5 mins</p>
+        </div>
+        <div>
+          <h3>0.74%</h3>
+          <p>1 Hour</p>
+        </div>
+        <div class="main-top-main" style="max-width: 40%">
+          <h3 style="color: white; font-size: 5rem; margin-bottom: 25px">
+            ₹ 21,03,192
+          </h3>
+          <p>Average BTC/INR net price including commission</p>
+        </div>
+        <div>
+          <h3>7.77%</h3>
+          <p>1 day</p>
+        </div>
+        <div>
+          <h3>17.51%</h3>
+          <p>7 Days</p>
+        </div>
+      </div>
+      <div class="main-bottom" style="overflow-x: scroll; word-wrap: unset">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Platform</th>
+              <th>Last Traded Price</th>
+              <th>Buy / Sell Price</th>
+              <th>Difference</th>
+              <th>Savings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% data.forEach(function(item, index){ %>
+            <tr>
+              <td><%= index+1%></td>
+              <td><%= item.name%></td>
+              <td>₹ <%= item.last%></td>
+              <td>₹ <%= item.buy%> / ₹ <%= item.sell%></td>
+              <td><%= item.volume%></td>
+              <td><%= item.base_unit%></td>
+            </tr>
+            <% }); %>
+
+            <!-- <tr>
+              <td>1</td>
+              <td>WazirX</td>
+              <td>₹ 20,52,001</td>
+              <td>₹ 20,52,001 / ₹ 20,52,001</td>
+              <td>-3.27%</td>
+              <td><i class="fa-solid fa-caret-down"></i> ₹ 20,525</td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div
+      style="
+        border-top: 1px solid grey;
+        padding: 5px 25px 50px 25px;
+        display: flex;
+        justify-content: space-between;
+        color: gray;
+      "
+    >
+      <p>Copyright © 2019 HodlInfo.com</p>
+      <p>Support</p>
+    </div>
+
+    <footer>
+      <button>Add hodlinfo to home screen</button>
+    </footer>
+
+    <script>
+      let time = document.querySelector(".time");
+      let currentTime = 60;
+      setInterval(() => {
+        time.innerHTML = currentTime;
+        if (currentTime == 0) currentTime = 60;
+        else currentTime = currentTime - 1;
+      }, 1000);
+
+      let inr = document.querySelector(".inr");
+      let btc = document.querySelector(".btc");
+      let inrDropdown = document.querySelector(".inr-dropdown");
+      let btcDropdown = document.querySelector(".btc-dropdown");
+      inr.addEventListener("click", () => {
+        if (inrDropdown.style.display == "block")
+          inrDropdown.style.display = "none";
+        else inrDropdown.style.display = "block";
+      });
+      btc.addEventListener("click", () => {
+        if (btcDropdown.style.display == "block")
+          btcDropdown.style.display = "none";
+        else btcDropdown.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
